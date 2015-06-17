@@ -5,14 +5,12 @@ import javax.swing.*;
 
 public class Game extends JFrame
 {
-
+   
     private static int WIDTH = 800;
     private static int HEIGHT = 600;
-    
-    
+
     public Game(){
-        
-         // Adiciona o JPanel do jogo
+        // Adiciona o JPanel do jogo
         add(new Board());
 
         // Define a saida da aplicação
@@ -27,11 +25,13 @@ public class Game extends JFrame
         setResizable(false);
         // Mostra a janela
         setVisible(true);
-        
+
     }
+
     public static void main (String args[]){
         new Game();
+        
+
     }
-    
-    
+
 }

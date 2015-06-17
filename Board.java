@@ -15,43 +15,57 @@ public class Board extends JPanel implements ActionListener {
 
     private Timer timer;
     private Score score;
-    
+    private Snake snake;
+    private Lista lista = new Lista();
     private boolean isPlaying = false;
 
     private Font font;
-       
+
     public Board() {
 
         addKeyListener(new TAdapter());
-        
+
         setFocusable(true);        
         setDoubleBuffered(true);
         setBackground(Color.WHITE);
 
         score = new Score();
-        add(score);       
-        
+        add(score); 
+        Snake aux = lista.getInicio();
+        while(aux.getProximo() != null){
+            add(aux);
+            aux = aux.getProximo();
+        }
+
         timer = new Timer(5, this);
         timer.start();
     }
 
-
     public void paint(Graphics g) {
         super.paint(g);
-        
+
         score.paintComponent(g);
-        
-        Graphics2D g2d = (Graphics2D)g;        
+
+        Graphics2D g2d = (Graphics2D)g;      
+        Snake aux = lista.getInicio();
+        if(aux.getProximo() == null){
+           g2d.drawImage(aux.getImage(),aux.getX(), aux.getY(),this);
+        }else{
+            while(aux.getProximo()!= null){
+                g2d.drawImage(aux.getImage(),aux.getX(), aux.getY(),this);
+                aux = aux.getProximo();
+            }
+        }
 
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
-        
-    }
 
+    }
 
     public void paintIntro(Graphics g) {
         if(isPlaying){
             isPlaying = false;
+
             Graphics2D g2d = (Graphics2D) g;
             try{
                 File file = new File("fonts/VT323-Regular.ttf");
@@ -66,40 +80,39 @@ public class Board extends JPanel implements ActionListener {
             g2d.drawString("S N A K E: " + this.score, 300, 300);
         }
     }
-    
-    public void actionPerformed(ActionEvent e) {        
+
+    public void actionPerformed(ActionEvent e) { 
         repaint();  
     }
-    
-    
-    private class TAdapter extends KeyAdapter {
 
+    private class TAdapter extends KeyAdapter {
         public void keyPressed(KeyEvent e) {
-            
             // Obtém o código da tecla
             int key =  e.getKeyCode();
 
             switch (key){
                 case KeyEvent.VK_ENTER:
-                    score.addScore(100);
-                    break;
-                    
+                lista.adiciona();
+                break;
+
                 case KeyEvent.VK_LEFT:
-                    break;
-                    
+                lista.moveCb();
+                break;
+
                 case KeyEvent.VK_RIGHT:
-                    break;
-                    
+                lista.moveCb();
+                break;
+
                 case KeyEvent.VK_UP:
-                    score.addScore(10);
-                    break;
-                    
+                lista.moveCb();
+                break;
+
                 case KeyEvent.VK_DOWN:
-                    score.subScore(-10);
-                    break;
+                lista.moveCb();
+                break;
             }
-            
+
         }
     }
-    
+
 }

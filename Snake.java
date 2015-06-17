@@ -11,36 +11,69 @@ import javax.swing.ImageIcon;
  */
 public class Snake extends JPanel
 {
-    private String snake = "head.png";
-
-    private int dx;
+    private String snake = "images/head.png";
+    private String body = "images/body.png";
+    private int dx; 
     private int dy;
     private int x;
     private int y;
     private Image image;
-    
+    private Snake proximo;
+
     public Snake() {
-        ImageIcon ii = new ImageIcon("images/"+this.getClass().getResource(snake));
-        image = ii.getImage();
-        x = 40;
-        y = 60;
+        ImageIcon ii = new ImageIcon(this.getClass().getResource(snake));
+        this.image = ii.getImage();
+        
+        this.x = 40;
+        this.y = 60;
+        this.proximo = null;
     }
     
+     public Snake(int i){
+        ImageIcon ii = new ImageIcon(this.getClass().getResource(body));
+        this.image = ii.getImage();
+        
+        this.x = 0;
+        this.y = 0;
+        this.proximo = null;
+    
+    }
+    
+    public Snake fabrica(){
+        return new Snake(1);
+    }
+
     public void move() {
-        x += dx;
-        y += dy;
+        this.x += 1;
+        this.y += 1;
     }
 
     public int getX() {
         return x;
     }
 
+    public void setX(int x){
+        this.x =x;
+    }
+
     public int getY() {
         return y;
     }
 
+    public void setY(int y){
+        this.y = y;
+    }
+
+    public Snake getProximo(){
+        return this.proximo;
+    }
+
+    public void setProximo(Snake snake){
+        this.proximo = snake;
+    }
+
     public Image getImage() {
-        return image;
+        return this.image;
     }
 
 }

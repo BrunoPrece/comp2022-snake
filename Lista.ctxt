@@ -1,0 +1,14 @@
+#BlueJ class context
+comment0.params=
+comment0.target=Lista()
+comment1.params=
+comment1.target=Snake\ getInicio()
+comment2.params=
+comment2.target=void\ moveCb()
+comment3.params=anterior
+comment3.target=void\ move(Snake)
+comment4.params=
+comment4.target=void\ adiciona()
+comment5.params=
+comment5.target=boolean\ isEmpty()
+numComments=6
