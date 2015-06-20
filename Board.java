@@ -16,6 +16,7 @@ public class Board extends JPanel implements ActionListener {
     private Timer timer;
     private Score score;
     private Snake snake;
+    static String direcao = "baixo";
     private Lista lista = new Lista();
     private boolean isPlaying = false;
 
@@ -36,7 +37,7 @@ public class Board extends JPanel implements ActionListener {
             add(aux);
             aux = aux.getProximo();
         }
-
+        isPlaying = true;
         timer = new Timer(5, this);
         timer.start();
     }
@@ -46,45 +47,90 @@ public class Board extends JPanel implements ActionListener {
 
         score.paintComponent(g);
 
-        Graphics2D g2d = (Graphics2D)g;      
-        Snake aux = lista.getInicio();
-        if(aux.getProximo() == null){
-           g2d.drawImage(aux.getImage(),aux.getX(), aux.getY(),this);
-        }else{
-            while(aux.getProximo()!= null){
-                g2d.drawImage(aux.getImage(),aux.getX(), aux.getY(),this);
-                aux = aux.getProximo();
-            }
-        }
+        Graphics2D g2d = (Graphics2D)g;
+        //adicionar a comida e fazer um método
+        if(isPlaying){
 
+            Snake aux = lista.getInicio();
+            if(aux.getProximo() == null){
+                g2d.drawImage(aux.getImage(),aux.getX(), aux.getY(),this);
+            }else{
+                while(aux.getProximo()!= null){
+                    g2d.drawImage(aux.getImage(),aux.getX(), aux.getY(),this);
+                    aux = aux.getProximo();
+                }
+            }
+        }else{
+            //         gameover
+        }
         Toolkit.getDefaultToolkit().sync();
         g.dispose();
 
     }
 
-    public void paintIntro(Graphics g) {
-        if(isPlaying){
-            isPlaying = false;
+    //     public void paintIntro(Graphics g) {
+    //         if(isPlaying){
+    //             isPlaying = false;
+    // 
+    //             Graphics2D g2d = (Graphics2D) g;
+    //             try{
+    //                 File file = new File("fonts/VT323-Regular.ttf");
+    //                 font = Font.createFont(Font.TRUETYPE_FONT, file);
+    //                 GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+    //                 ge.registerFont(font);
+    //                 font = font.deriveFont(Font.PLAIN,40);
+    //                 g2d.setFont(font);
+    //             }catch (Exception e){
+    //                 System.out.println(e.toString());
+    //             }   
+    //             g2d.drawString("S N A K E: " + this.score, 300, 300);
+    //         }
+    //     }
 
-            Graphics2D g2d = (Graphics2D) g;
-            try{
-                File file = new File("fonts/VT323-Regular.ttf");
-                font = Font.createFont(Font.TRUETYPE_FONT, file);
-                GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-                ge.registerFont(font);
-                font = font.deriveFont(Font.PLAIN,40);
-                g2d.setFont(font);
-            }catch (Exception e){
-                System.out.println(e.toString());
-            }   
-            g2d.drawString("S N A K E: " + this.score, 300, 300);
+    public void actionPerformed(ActionEvent e) {
+        lista.imageDirection(direcao);
+        switch(direcao){
+            case "esquerda":
+            lista.moveCb(-1,0);
+            break;
+
+            case "direita":
+            lista.moveCb(1,0);
+            break;
+
+            case "cima":
+            lista.moveCb(0,-1);
+            break;
+
+            case "baixo":
+            lista.moveCb(0,1);
+            break;
+
         }
-    }
-
-    public void actionPerformed(ActionEvent e) { 
         repaint();  
     }
 
+    public void adicionar(){
+        switch(direcao){
+            
+            case "esquerda":
+            lista.adiciona(20,0);
+            break;
+
+            case "direita":
+            lista.adiciona(-20,0);
+            break;
+
+            case "cima":
+            lista.adiciona(0,20);
+            break;
+
+            case "baixo":
+            lista.adiciona(0,-20);
+            break;
+        }
+    }
+    
     private class TAdapter extends KeyAdapter {
         public void keyPressed(KeyEvent e) {
             // Obtém o código da tecla
@@ -92,23 +138,23 @@ public class Board extends JPanel implements ActionListener {
 
             switch (key){
                 case KeyEvent.VK_ENTER:
-                lista.adiciona();
+                adicionar();
                 break;
 
                 case KeyEvent.VK_LEFT:
-                lista.moveCb();
+                direcao = "esquerda";
                 break;
 
                 case KeyEvent.VK_RIGHT:
-                lista.moveCb();
+                direcao = "direita";
                 break;
 
                 case KeyEvent.VK_UP:
-                lista.moveCb();
+                direcao = "cima";
                 break;
 
                 case KeyEvent.VK_DOWN:
-                lista.moveCb();
+                direcao = "baixo";
                 break;
             }
 

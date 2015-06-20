@@ -23,23 +23,23 @@ public class Snake extends JPanel
     public Snake() {
         ImageIcon ii = new ImageIcon(this.getClass().getResource(snake));
         this.image = ii.getImage();
-        
+
         this.x = 40;
         this.y = 60;
         this.proximo = null;
     }
-    
-     public Snake(int i){
+
+    public Snake(int i){
         ImageIcon ii = new ImageIcon(this.getClass().getResource(body));
         this.image = ii.getImage();
-        
+
         this.x = 0;
         this.y = 0;
         this.proximo = null;
-    
-    }
-    
-    public Snake fabrica(){
+
+     }
+
+     public Snake fabrica(){
         return new Snake(1);
     }
 
@@ -74,6 +74,11 @@ public class Snake extends JPanel
 
     public Image getImage() {
         return this.image;
+    }
+
+    public void setImage(String snake){
+        ImageIcon ii = new ImageIcon(this.getClass().getResource(snake));
+        this.image = ii.getImage();
     }
 
 }

@@ -14,32 +14,42 @@ public class Lista
         return this.inicio;
     }
 
-    public void moveCb(){
-        Snake anterior = inicio;
+    public void moveCb(int x, int y){
+        Snake anterior = inicio.fabrica();
+        anterior.setX(inicio.getX());
+        anterior.setY(inicio.getY()-20);
+        anterior.setProximo(inicio.getProximo());
+
         move(anterior);
-        inicio.setY(inicio.getY()+40);
-        inicio.setX(inicio.getX()+20);
-       
+        inicio.setX(inicio.getX()+x);
+        inicio.setY(inicio.getY()+y);
+
     }
 
     public void move(Snake anterior){
         Snake aux = anterior;
-        Snake ini = anterior;
-        Snake n;
+        Snake ant = inicio.fabrica();
+
         while(aux.getProximo() != null){
-            n = aux = aux.getProximo();
-            aux.setX(ini.getX());
-            aux.setY(ini.getY());
-            ini= n.getProximo();
+            aux = aux.getProximo();
+            ant.setX(aux.getX());
+            ant.setY(aux.getY());
+
+            aux.setX(anterior.getX());
+            aux.setY(anterior.getY());
+
+            anterior.setX(ant.getX());
+            anterior.setY(ant.getY());
 
         }
-       
+
     }
-    public void adiciona(){
+
+    public void adiciona(int x, int y){
         if(inicio.getProximo() == null){
             Snake aux = inicio.fabrica();
-            aux.setX(inicio.getX()+50);
-            aux.setY(inicio.getY());
+            aux.setX(inicio.getX()+x);
+            aux.setY(inicio.getY()+y);
             inicio.setProximo(aux);
         }else{  
             Snake aux = inicio;
@@ -47,9 +57,29 @@ public class Lista
             while(aux.getProximo() != null){
                 aux = aux.getProximo();
             }
-            novo.setX(aux.getX()+30);
-            novo.setY(aux.getY());
+            novo.setX(aux.getX()+x);
+            novo.setY(aux.getY()+y);
             aux.setProximo(novo);
+        }
+    }
+
+    public void imageDirection(String direcao){
+        switch(direcao){
+            case "esquerda":
+            inicio.setImage("images/head.png");
+            break;
+
+            case "direita":
+            inicio.setImage("images/head.png");
+            break;
+
+            case "cima":
+            inicio.setImage("images/headC.png");
+            break;
+
+            case "baixo":
+            inicio.setImage("images/headB.png");
+            break;
         }
     }
 
