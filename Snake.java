@@ -37,9 +37,9 @@ public class Snake extends JPanel
         this.y = 0;
         this.proximo = null;
 
-     }
+    }
 
-     public Snake fabrica(){
+    public Snake fabrica(){
         return new Snake(1);
     }
 

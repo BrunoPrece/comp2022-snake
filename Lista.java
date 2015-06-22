@@ -17,21 +17,20 @@ public class Lista
     public void moveCb(int x, int y){
         Snake anterior = inicio.fabrica();
         anterior.setX(inicio.getX());
-        anterior.setY(inicio.getY()-20);
+        anterior.setY(inicio.getY());
         anterior.setProximo(inicio.getProximo());
-
         move(anterior);
         inicio.setX(inicio.getX()+x);
         inicio.setY(inicio.getY()+y);
 
     }
-
     public void move(Snake anterior){
         Snake aux = anterior;
         Snake ant = inicio.fabrica();
 
         while(aux.getProximo() != null){
             aux = aux.getProximo();
+
             ant.setX(aux.getX());
             ant.setY(aux.getY());
 
@@ -40,7 +39,6 @@ public class Lista
 
             anterior.setX(ant.getX());
             anterior.setY(ant.getY());
-
         }
 
     }
@@ -70,7 +68,7 @@ public class Lista
             break;
 
             case "direita":
-            inicio.setImage("images/head.png");
+            inicio.setImage("images/headD.png");
             break;
 
             case "cima":
@@ -90,4 +88,24 @@ public class Lista
             return false;
         }
     }
+
+    public void zerar(){
+        inicio = new Snake();
+    }
 }
+//    if(Board.direcao.equals("direita")){
+//                 ant.setX(aux.getX()-30);
+//                 ant.setY(aux.getY());
+//             }
+//             else if(Board.direcao.equals("esquerda")){
+//                 ant.setX(aux.getX()+30);
+//                 ant.setY(aux.getY());
+//             }
+//             else if(Board.direcao.equals("baixo")){
+//                 ant.setY(aux.getY()-30);
+//                 ant.setX(aux.getX());
+//             }
+//             else {
+//                 ant.setY(aux.getY()+30);
+//                 ant.setX(aux.getX());
+//             }

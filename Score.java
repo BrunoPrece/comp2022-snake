@@ -16,7 +16,7 @@ public class Score extends JPanel
 {
     private int score;
     private Font font;
-    
+
     /**
      * Constructor for objects of class Score
      */
@@ -24,9 +24,8 @@ public class Score extends JPanel
     {
         score = 0;
     }
-   
-   
-     /**
+
+    /**
      * Este método soma o número de pontos ao score.
      * 
      * @param  points   número de pontos 
@@ -35,23 +34,23 @@ public class Score extends JPanel
     public void addScore(int points){
         this.score = this.score + points;
     }
-    
+
     /**
-    * Este método subtrai o número de pontos ao score.
-    * 
-    * @param  points   número de pontos 
-    * @return     void
-    */
+     * Este método subtrai o número de pontos ao score.
+     * 
+     * @param  points   número de pontos 
+     * @return     void
+     */
     public void subScore(int points){
         this.score = this.score + points;
     }
-    
+
     /**
-    * Este método desenha o score 
-    * 
-    * @param  Graphics g    
-    * @return     void
-    */
+     * Este método desenha o score 
+     * 
+     * @param  Graphics g    
+     * @return     void
+     */
     private void doDrawing(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         try{
@@ -63,20 +62,21 @@ public class Score extends JPanel
             g2d.setFont(font);
         }catch (Exception e){
             System.out.println(e.toString());
-        }   
+        } 
         g2d.drawString("Score: " + this.score, 600, 50);
+
     }
 
     /**
-    * Override do método que pinta este componente, pois ele é um JPanel.
-    * 
-    * @param  Graphics g    
-    * @return     void
-    */
+     * Override do método que pinta este componente, pois ele é um JPanel.
+     * 
+     * @param  Graphics g    
+     * @return     void
+     */
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         doDrawing(g);
     }
-    
+
 }

@@ -13,4 +13,6 @@ comment5.params=direcao
 comment5.target=void\ imageDirection(java.lang.String)
 comment6.params=
 comment6.target=boolean\ isEmpty()
-numComments=7
+comment7.params=
+comment7.target=void\ zerar()
+numComments=8
