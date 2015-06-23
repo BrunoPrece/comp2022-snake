@@ -33,7 +33,7 @@ public class Board extends JPanel implements ActionListener {
         setBackground(Color.WHITE);
 
         score = new Score();
-        add(score);
+        //add(score);
         fries = new Food();
         add(fries);
         Snake aux = lista.getInicio();
@@ -66,8 +66,8 @@ public class Board extends JPanel implements ActionListener {
             }
             g2d.drawImage(fries.getImage(), fries.getX(), fries.getY(), this);
         }else{
-            g2d.drawString("GAME OVER",250,200);
-            g2d.drawString("Press ENTER Try Again!",250,250);
+            g2d.drawString("GAME OVER",300,200);
+            g2d.drawString("Press ENTER Try Again!",225,250);
             direcao = "baixo";
             dirAnterior = "baixo";
             score = new Score();
@@ -93,19 +93,19 @@ public class Board extends JPanel implements ActionListener {
 
             switch(direcao){
                 case "esquerda":
-                lista.moveCb(-1,0);
+                lista.moveCb(-2,0);
                 break;
 
                 case "direita":
-                lista.moveCb(1,0);
+                lista.moveCb(2,0);
                 break;
 
                 case "cima":
-                lista.moveCb(0,-1);
+                lista.moveCb(0,-2);
                 break;
 
                 case "baixo":
-                lista.moveCb(0,1);
+                lista.moveCb(0,2);
                 break;
 
             }

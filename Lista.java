@@ -24,6 +24,7 @@ public class Lista
         inicio.setY(inicio.getY()+y);
 
     }
+    
     public void move(Snake anterior){
         Snake aux = anterior;
         Snake ant = inicio.fabrica();
@@ -78,14 +79,6 @@ public class Lista
             case "baixo":
             inicio.setImage("images/headB.png");
             break;
-        }
-    }
-
-    public boolean isEmpty(){
-        if(inicio == null){
-            return true;
-        }else{
-            return false;
         }
     }
 
