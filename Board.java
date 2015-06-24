@@ -59,10 +59,10 @@ public class Board extends JPanel implements ActionListener {
             if(aux.getProximo() == null){
                 g2d.drawImage(aux.getImage(),aux.getX(), aux.getY(),this);
             }else{
-                while(aux.getProximo()!= null){
+                do{
                     g2d.drawImage(aux.getImage(),aux.getX(), aux.getY(),this);
                     aux = aux.getProximo();
-                }
+                }while(aux.getProximo()!= null);
             }
             g2d.drawImage(fries.getImage(), fries.getX(), fries.getY(), this);
         }else{
@@ -79,6 +79,7 @@ public class Board extends JPanel implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         lista.imageDirection(direcao);
+        verificar();
 
         if(isPlaying == true){
 
@@ -119,19 +120,19 @@ public class Board extends JPanel implements ActionListener {
 
         switch(direcao){
             case "esquerda":
-            lista.adiciona(1,0);
+            lista.adiciona(20,0);
             break;
 
             case "direita":
-            lista.adiciona(-1,0);
+            lista.adiciona(-20,0);
             break;
 
             case "cima":
-            lista.adiciona(0,1);
+            lista.adiciona(0,20);
             break;
 
             case "baixo":
-            lista.adiciona(0,-1);
+            lista.adiciona(0,-20);
             break;
         }
     }
@@ -156,7 +157,7 @@ public class Board extends JPanel implements ActionListener {
             }
         }
 
-        if(((inicio.getX()>=795)||(inicio.getX()==0))||(inicio.getY()>=595)||(inicio.getY() == 0)){
+        if(((inicio.getX()>800)||(inicio.getX()<0))||(inicio.getY()>600)||(inicio.getY() < 0)){
             isPlaying = false;
             lista.zerar();
         }

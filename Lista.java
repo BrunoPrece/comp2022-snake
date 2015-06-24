@@ -86,19 +86,3 @@ public class Lista
         inicio = new Snake();
     }
 }
-//    if(Board.direcao.equals("direita")){
-//                 ant.setX(aux.getX()-30);
-//                 ant.setY(aux.getY());
-//             }
-//             else if(Board.direcao.equals("esquerda")){
-//                 ant.setX(aux.getX()+30);
-//                 ant.setY(aux.getY());
-//             }
-//             else if(Board.direcao.equals("baixo")){
-//                 ant.setY(aux.getY()-30);
-//                 ant.setX(aux.getX());
-//             }
-//             else {
-//                 ant.setY(aux.getY()+30);
-//                 ant.setX(aux.getX());
-//             }
