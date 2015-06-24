@@ -42,7 +42,7 @@ public class Board extends JPanel implements ActionListener {
             aux = aux.getProximo();
         }
 
-        timer = new Timer(5, this);
+        timer = new Timer(100, this);
         timer.start();
     }
 
@@ -93,19 +93,19 @@ public class Board extends JPanel implements ActionListener {
 
             switch(direcao){
                 case "esquerda":
-                lista.moveCb(-2,0);
+                lista.moveCb(-20,0);
                 break;
 
                 case "direita":
-                lista.moveCb(2,0);
+                lista.moveCb(20,0);
                 break;
 
                 case "cima":
-                lista.moveCb(0,-2);
+                lista.moveCb(0,-20);
                 break;
 
                 case "baixo":
-                lista.moveCb(0,2);
+                lista.moveCb(0,20);
                 break;
 
             }
@@ -142,9 +142,7 @@ public class Board extends JPanel implements ActionListener {
 
         if(((lista.getInicio().getX()<= fries.getX()+10)&&(lista.getInicio().getX()>= fries.getX()-10))&&
         (lista.getInicio().getY()<= fries.getY()+15)&&(lista.getInicio().getY()>= fries.getY()-15)){
-            for(int i = 0; i<20;i++){
-                adicionar();
-            }
+            adicionar();
             fries.setX();
             fries.setY();
             score.addScore(10);
